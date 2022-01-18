@@ -10,7 +10,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <title>Node Simple Server</title>
+    <title><%= title %></title>
   </head>
   <body>
     <div class="container">
@@ -19,6 +19,13 @@
       <form action="/" method="post" class="mb-2">
         <div class="form-group mb-2">
           <input type="text" class="form-control" name="title" required />
+        </div>
+        <div class="card">
+          <ul class="list-group">
+            <% for (let i = 0; i < notes.length; i++) { %>
+            <li class="list-group-item"> <%= notes[i].title%> </li>
+            <% } %>
+          </ul>
         </div>
 
         <button class="btn btn-primary" type="submit">Create</button>
