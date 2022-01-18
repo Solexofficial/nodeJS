@@ -1,1 +1,6 @@
-[{"title":"Hello","id":"1642447133694"},{"title":"NodeJs","id":"1642447149213"},{"title":"this note from browser","id":"1642535171030"},{"title":"work work","id":"1642535330458"}]
+[
+  { "title": "Hello", "id": "1642447133694" },
+  { "title": "NodeJs", "id": "1642447149213" },
+  { "title": "this note from browser", "id": "1642535171030" },
+  { "title": "work work", "id": "1642535330458" }
+]
