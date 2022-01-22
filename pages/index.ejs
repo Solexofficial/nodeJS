@@ -16,20 +16,32 @@
     <div class="container">
       <h1>This is working</h1>
 
+      <% if (created) {%>
+      <div class="alert alert-success">Note has been created</div>
+      <% } %>
+
       <form action="/" method="post" class="mb-2">
         <div class="form-group mb-2">
           <input type="text" class="form-control" name="title" required />
         </div>
+        <% if (notes.length) { %>
         <div class="card">
           <ul class="list-group">
             <% for (let i = 0; i < notes.length; i++) { %>
-            <li class="list-group-item"> <%= notes[i].title%> </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <%= notes[i].title%>
+              <button class="btn btn-danger" data-type="remove" data-id="<%= notes[i].id %>">&times;</button>
+            </li>
             <% } %>
           </ul>
         </div>
+        <% } else { %>
+        <p>No notes</p>
+        <% } %>
 
         <button class="btn btn-primary" type="submit">Create</button>
       </form>
     </div>
+    <script src="/app.js"></script>
   </body>
 </html>
