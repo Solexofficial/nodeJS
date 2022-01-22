@@ -15,9 +15,12 @@
   <body>
     <div class="container">
       <h1>This is working</h1>
-
-      <% if (created) {%>
+      <% if (created) { %>
       <div class="alert alert-success">Note has been created</div>
+      <% } else if (edited) { %>
+      <div class="alert alert-warning">Note has been edited</div>
+      <% } else if (removed) { %>
+      <div class="alert alert-danger">Note has been removed</div>
       <% } %>
 
       <form action="/" method="post" class="mb-2">
@@ -29,8 +32,11 @@
           <ul class="list-group">
             <% for (let i = 0; i < notes.length; i++) { %>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-              <%= notes[i].title%>
-              <button class="btn btn-danger" data-type="remove" data-id="<%= notes[i].id %>">&times;</button>
+              <span class="note-title"><%= notes[i].title%></span>
+              <div class="btn-group">
+                <button class="btn btn-primary" data-type="edit" data-id="<%= notes[i].id %>">Редактировать</button>
+                <button class="btn btn-danger" data-type="remove" data-id="<%= notes[i].id %>">&times;</button>
+              </div>
             </li>
             <% } %>
           </ul>

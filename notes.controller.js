@@ -13,7 +13,7 @@ async function addNote(title) {
 
   notes.push(note);
 
-  await fs.writeFile(notesPath, JSON.stringify(notes));
+  await saveNotes(notes);
   console.log(chalk.green('Note was added'));
 }
 
@@ -28,8 +28,20 @@ async function removeNote(id) {
 
   const filteredNotes = notes.filter(note => note.id !== id);
 
-  await fs.writeFile(notesPath, JSON.stringify(filteredNotes));
+  await saveNotes(filteredNotes);
   console.log(chalk.red('Note was removed'));
+}
+
+async function editNote(payload) {
+  const notes = await getNotes();
+  const noteIdx = notes.findIndex(note => note.id === payload.id);
+  notes[noteIdx] = payload;
+  await saveNotes(notes);
+  console.log(chalk.green(`Note with id-${payload.id} has been edited`));
+}
+
+async function saveNotes(notes) {
+  await fs.writeFile(notesPath, JSON.stringify(notes));
 }
 
 async function printNotes() {
@@ -46,4 +58,5 @@ module.exports = {
   printNotes,
   removeNote,
   getNotes,
+  editNote,
 };
